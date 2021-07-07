@@ -13,7 +13,9 @@ const current1El = document.getElementById('current--1');
 const diceEl = document.querySelector('.dice');
 
 // state var
+const score = [0, 0];
 let currentScore = 0;
+let activePlayer = 0;
 
 // initial conditions
 score0El.textContent = 0;
@@ -29,11 +31,11 @@ btnRoll.addEventListener('click', function () {
   diceEl.src = `dice-${dice}.png`;
   if (dice !== 1) {
     currentScore += dice;
-    current0El.textContent = currentScore; // change later
+    document.getElementById(`current--${activePlayer}`).textContent =
+      currentScore;
   } else {
     // switch to next player
-    currentScore = 0;
-    current0El.textContent = currentScore;
+    activePlayer = activePlayer === 0 ? 1 : 0;
   }
 });
 
